@@ -1,0 +1,16 @@
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\bin\Debug\netcoreapp2.2\appsettings.Development.json
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\bin\Debug\netcoreapp2.2\appsettings.json
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\bin\Debug\netcoreapp2.2\ProjectDin.deps.json
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\bin\Debug\netcoreapp2.2\ProjectDin.runtimeconfig.json
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\bin\Debug\netcoreapp2.2\ProjectDin.runtimeconfig.dev.json
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\bin\Debug\netcoreapp2.2\ProjectDin.dll
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\bin\Debug\netcoreapp2.2\ProjectDin.pdb
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\obj\Debug\netcoreapp2.2\ProjectDin.csprojAssemblyReference.cache
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\obj\Debug\netcoreapp2.2\ProjectDin.RazorAssemblyInfo.cache
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\obj\Debug\netcoreapp2.2\ProjectDin.RazorAssemblyInfo.cs
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\obj\Debug\netcoreapp2.2\ProjectDin.AssemblyInfoInputs.cache
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\obj\Debug\netcoreapp2.2\ProjectDin.AssemblyInfo.cs
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\obj\Debug\netcoreapp2.2\ProjectDin.RazorTargetAssemblyInfo.cache
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\obj\Debug\netcoreapp2.2\ProjectDin.dll
+D:\School\3ITF\Angular\ProjectDin\ProjectDin\obj\Debug\netcoreapp2.2\ProjectDin.pdb
