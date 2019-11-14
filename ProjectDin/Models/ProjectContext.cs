@@ -15,7 +15,8 @@ namespace ProjectDin.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Friend> Friends { get; set; }
         public DbSet<Poll> Polls { get; set; }
-        public DbSet<PollOption> PollOptions { get; set; }
+        public DbSet<Optie> Opties { get; set; }
+        public DbSet<Antwoord> Antwoorden { get; set; }
         public DbSet<PollUser> PollUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,7 +25,8 @@ namespace ProjectDin.Models
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Friend>().ToTable("Friend");
             modelBuilder.Entity<Poll>().ToTable("Poll");
-            modelBuilder.Entity<PollOption>().ToTable("PollOption");
+            modelBuilder.Entity<Optie>().ToTable("Optie");
+            modelBuilder.Entity<Antwoord>().ToTable("Antwoord");
             modelBuilder.Entity<PollUser>().ToTable("PollUser");
         }
 

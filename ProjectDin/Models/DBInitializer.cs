@@ -24,9 +24,17 @@ namespace ProjectDin.Models
 
             context.SaveChanges();
 
-            context.Friends.AddRange(new Friend { UserID = 2, UserIDFriend = context.Users.First().UserID, Status = 1 });
+            context.Opties.AddRange(new Optie { PollID = context.Polls.First().PollID, Naam = "optie1" });
 
-            context.PollOptions.AddRange(new PollOption { OptionName = "optie1", PollID = 1 });
+            context.Opties.AddRange(new Optie { PollID = context.Polls.First().PollID,  Naam = "optie2" });
+
+            context.SaveChanges();
+
+            context.Antwoorden.AddRange(new Antwoord { OptieID = context.Opties.First().OptieID, UserID = context.Users.First().UserID });
+
+            context.Friends.AddRange(new Friend { UserID = 2, UserFriendID = context.Users.First().UserID, Status = 1 });
+
+            //context.PollOpties.AddRange(new PollOptie { OptieID = context.Opties.First().OptieID, PollID = context.Polls.First().PollID });
 
             context.PollUsers.Add(new PollUser() { UserID = context.Users.First().UserID, PollID = context.Polls.First().PollID });
             

@@ -19,5 +19,6 @@ namespace ProjectDin.Models
         public ICollection<PollUser> PollUsers { get; set; }
 
         public ICollection<Friend> Friends { get; set; }
+        public ICollection<Antwoord> Antwoorden { get; set; }
     }
 }

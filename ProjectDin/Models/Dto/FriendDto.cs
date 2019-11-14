@@ -11,6 +11,6 @@ namespace ProjectDin.Models.Dto
         public int UserID { get; set; }
         public int Status { get; set; }
         public string Username { get; set; }
-        public int UserIDFriend { get; set; }
+        public int UserFriendID { get; set; }
     }
 }

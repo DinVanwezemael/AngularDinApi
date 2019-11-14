@@ -10,6 +10,6 @@ namespace ProjectDin.Models
         public int PollID { get; set; }
         public string Naam { get; set; }
         public ICollection<PollUser> PollUsers { get; set; }
-        public ICollection<PollOption> PollOptions { get; set; }
+        public ICollection<Optie> Opties { get; set; }
     }
 }

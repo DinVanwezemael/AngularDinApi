@@ -5,11 +5,16 @@ using System.Threading.Tasks;
 
 namespace ProjectDin.Models
 {
-    public class PollOption
+    public class Optie
     {
-        public int PollOptionID { get; set; }
-        public string OptionName { get; set; }
+        public int OptieID { get; set; }
+        public string Naam { get; set; }
+
+        public int AantalStemmen { get; set; }
+
         public int PollID { get; set; }
         public Poll Poll { get; set; }
+
+        public ICollection<Antwoord> Antwoorden { get; set; }
     }
 }

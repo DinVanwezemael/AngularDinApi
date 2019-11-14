@@ -17,5 +17,6 @@ namespace ProjectDin.Models.Dto
 
         public string PollName { get; set; }
         public int PollOptionID { get; set; }
+        public List<Optie> Opties { get; set; }
     }
 }
