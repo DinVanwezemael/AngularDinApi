@@ -95,6 +95,54 @@ namespace ProjectDin.Controllers
             return vPollDtos;
         }
 
+        // bewerken van een poll
+        [HttpGet("bewerk{id}")]
+        public async Task<ActionResult<IList<PollDto>>> GetBewerkPoll(int id)
+        {
+            var pollContext = _context.PollUsers.Include(p => p.User).Where(p => p.PollID == id).Include(p => p.Poll).ThenInclude(p => p.Opties);
+
+
+            if (pollContext == null)
+            {
+                return NotFound();
+            }
+
+
+            var vPolls = await pollContext.ToListAsync();
+
+            var vPollDtos = new List<PollDto>();
+
+            var opties = new List<Optie>();
+
+
+            foreach (var p in vPolls)
+            {
+                opties = new List<Optie>();
+                foreach (var o in p.Poll.Opties)
+                {
+                    var Stemmen = _context.Antwoorden.Include(a => a.Optie).Where(a => a.OptieID == o.OptieID);
+                    int aantalStemmen = Stemmen.Count();
+
+                    opties.Add(new Optie { Naam = o.Naam, OptieID = o.OptieID, PollID = o.PollID, AantalStemmen = aantalStemmen });
+
+
+                }
+
+                vPollDtos.Add(new PollDto()
+                {
+                    PollID = p.PollID,
+                    Naam = p.Poll.Naam,
+                    UserID = p.UserID,
+                    UserName = p.User.Username,
+                    PollUserID = p.PollUserID,
+                    Opties = opties
+
+                });
+            }
+
+            return vPollDtos;
+        }
+
         // PUT: api/PollUser/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPollUser(int id,[FromBody] PollUser pollUser)

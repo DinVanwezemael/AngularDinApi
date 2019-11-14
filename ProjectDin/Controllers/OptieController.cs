@@ -76,7 +76,10 @@ namespace ProjectDin.Controllers
         [HttpPost]
         public async Task<ActionResult<Optie>> PostOptie(Optie optie)
         {
-            _context.Opties.Add(optie);
+            //_context.Opties.Add(optie);
+
+            _context.Opties.AddRange(new Optie { Naam = optie.Naam, PollID = optie.PollID, AantalStemmen = 0 });
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetOptie", new { id = optie.OptieID }, optie);

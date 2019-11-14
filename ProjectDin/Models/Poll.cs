@@ -11,5 +11,6 @@ namespace ProjectDin.Models
         public string Naam { get; set; }
         public ICollection<PollUser> PollUsers { get; set; }
         public ICollection<Optie> Opties { get; set; }
+        public ICollection<Uitnodiging> Uitnodigingen { get; set; }
     }
 }

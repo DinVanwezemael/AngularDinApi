@@ -20,5 +20,7 @@ namespace ProjectDin.Models
 
         public ICollection<Friend> Friends { get; set; }
         public ICollection<Antwoord> Antwoorden { get; set; }
+
+        public ICollection<Uitnodiging> Uitnodigingen { get; set; }
     }
 }

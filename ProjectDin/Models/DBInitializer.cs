@@ -30,6 +30,8 @@ namespace ProjectDin.Models
 
             context.SaveChanges();
 
+            context.Uitnodigingen.AddRange(new Uitnodiging { PollID = context.Polls.First().PollID, UserID = context.Users.First().UserID });
+
             context.Antwoorden.AddRange(new Antwoord { OptieID = context.Opties.First().OptieID, UserID = context.Users.First().UserID });
 
             context.Friends.AddRange(new Friend { UserID = 2, UserFriendID = context.Users.First().UserID, Status = 1 });

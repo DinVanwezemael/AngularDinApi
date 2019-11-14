@@ -16,6 +16,7 @@ namespace ProjectDin.Models
         public DbSet<Friend> Friends { get; set; }
         public DbSet<Poll> Polls { get; set; }
         public DbSet<Optie> Opties { get; set; }
+        public DbSet<Uitnodiging> Uitnodigingen { get; set; }
         public DbSet<Antwoord> Antwoorden { get; set; }
         public DbSet<PollUser> PollUsers { get; set; }
 
@@ -26,6 +27,7 @@ namespace ProjectDin.Models
             modelBuilder.Entity<Friend>().ToTable("Friend");
             modelBuilder.Entity<Poll>().ToTable("Poll");
             modelBuilder.Entity<Optie>().ToTable("Optie");
+            modelBuilder.Entity<Uitnodiging>().ToTable("Uitnodiging");
             modelBuilder.Entity<Antwoord>().ToTable("Antwoord");
             modelBuilder.Entity<PollUser>().ToTable("PollUser");
         }
