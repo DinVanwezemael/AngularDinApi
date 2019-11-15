@@ -95,6 +95,54 @@ namespace ProjectDin.Controllers
             return vPollDtos;
         }
 
+        // GET: api/PollUser/5
+        [HttpGet("uitgenodigd{id}")]
+        public async Task<ActionResult<IList<PollDto>>> GetUitgenodigd(int id)
+        {
+            var pollContext = _context.Uitnodigingen.Include(u => u.User).Include(u => u.User.PollUsers).Include(u => u.Poll).Include(u => u.Poll.Opties).Include(u => u.User.Antwoorden).Where(u => u.UserID == id);
+
+
+            if (pollContext == null)
+            {
+                return NotFound();
+            }
+
+
+            var vPolls = await pollContext.ToListAsync();
+
+            var vPollDtos = new List<PollDto>();
+
+            var opties = new List<Optie>();
+
+
+            foreach (var p in vPolls)
+            {
+                opties = new List<Optie>();
+                foreach (var o in p.Poll.Opties)
+                {
+                    var Stemmen = _context.Antwoorden.Include(a => a.Optie).Where(a => a.OptieID == o.OptieID);
+                    int aantalStemmen = Stemmen.Count();
+
+                    opties.Add(new Optie { Naam = o.Naam, OptieID = o.OptieID, PollID = o.PollID, AantalStemmen = aantalStemmen });
+
+
+                }
+
+                vPollDtos.Add(new PollDto()
+                {
+                    PollID = p.PollID,
+                    Naam = p.Poll.Naam,
+                    UserID = p.UserID,
+                    UserName = p.User.Username,
+                    //PollUserID = p.PollUserID,
+                    Opties = opties
+
+                });
+            }
+
+            return vPollDtos;
+        }
+
         // bewerken van een poll
         [HttpGet("bewerk{id}")]
         public async Task<ActionResult<IList<PollDto>>> GetBewerkPoll(int id)

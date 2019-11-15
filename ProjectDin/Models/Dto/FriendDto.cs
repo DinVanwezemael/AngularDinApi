@@ -12,5 +12,6 @@ namespace ProjectDin.Models.Dto
         public int Status { get; set; }
         public string Username { get; set; }
         public int UserFriendID { get; set; }
+        public int Reference { get; set; }
     }
 }

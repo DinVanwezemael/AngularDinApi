@@ -61,7 +61,7 @@ namespace ProjectDin.Controllers
 
             foreach(var f in vFriends)
             {
-                vFriendsDtos.Add(new FriendDto() { UserID = f.UserID, FriendID = f.FriendID, Status = f.Status, UserFriendID = f.UserFriendID, Username = f.UserFriend.Username });
+                vFriendsDtos.Add(new FriendDto() { UserID = f.UserID, FriendID = f.FriendID, Status = f.Status, UserFriendID = f.UserFriendID, Username = f.UserFriend.Username, Reference = f.Reference });
             }
 
             return vFriendsDtos;
@@ -144,16 +144,22 @@ namespace ProjectDin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Friend>> DeleteFriend(int id)
         {
-            var friend = await _context.Friends.FindAsync(id);
-            if (friend == null)
+
+            var friends = await _context.Friends.Where(f => f.Reference == id).ToListAsync();
+            if (friends == null)
             {
                 return NotFound();
             }
 
-            _context.Friends.Remove(friend);
+
+            foreach(var f in friends)
+            {
+
+                _context.Friends.Remove(f);
+            }
             await _context.SaveChangesAsync();
 
-            return friend;
+            return null;
         }
 
         private bool FriendExists(int id)
