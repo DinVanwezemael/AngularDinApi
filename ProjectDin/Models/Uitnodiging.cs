@@ -13,5 +13,7 @@ namespace ProjectDin.Models
 
         public int PollID { get; set; }
         public Poll Poll { get; set; }
+
+        public int Reference { get; set; }
     }
 }

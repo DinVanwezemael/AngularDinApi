@@ -135,6 +135,8 @@ namespace ProjectDin.Controllers
                     UserID = p.UserID,
                     UserName = p.User.Username,
                     //PollUserID = p.PollUserID,
+                    UitnodigingID = p.UitnodigingID,
+                    Reference = p.Reference,
                     Opties = opties
 
                 });
