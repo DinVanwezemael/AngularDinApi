@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectDin.Models;
+using ProjectDin.Models.Dto;
 
 namespace ProjectDin.Controllers
 {
@@ -28,17 +29,19 @@ namespace ProjectDin.Controllers
         }
 
         // GET: api/UserBeheer/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        [HttpGet("getuser{id}")]
+        public async Task<ActionResult<UserDto>> GetUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
 
-            if (user == null)
+            var UserDto = new UserDto{ UserID = user.UserID, Email = user.Email, Firstname = user.Email, Lastname = user.LastName, Password = user.Password, Username = user.Username };
+
+            if (UserDto == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return UserDto;
         }
 
         // PUT: api/UserBeheer/5
