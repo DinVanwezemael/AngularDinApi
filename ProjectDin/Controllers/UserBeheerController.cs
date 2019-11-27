@@ -46,12 +46,41 @@ namespace ProjectDin.Controllers
 
         // PUT: api/UserBeheer/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUser(int id,[FromBody] User user)
+        {
+
+
+            _context.Entry(user).State = EntityState.Modified;
+
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok(user);
+        }
+
+        // PUT: api/UserBeheer/5
+        [HttpPut("password{id}")]
+        public async Task<IActionResult> PutUserPassword(int id,[FromBody] User user)
         {
             if (id != user.UserID)
             {
                 return BadRequest();
             }
+
 
             _context.Entry(user).State = EntityState.Modified;
 

@@ -11,7 +11,6 @@ namespace ProjectDin.Models
         public int UserID { get; set; }
         public int Status { get; set; }
         public int Reference { get; set; }
-
         public int UserFriendID { get; set; }
         public User UserFriend { get; set; }
 
