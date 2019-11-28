@@ -22,10 +22,51 @@ namespace ProjectDin.Controllers
         }
 
         // GET: api/UserBeheer
-        [HttpGet("getall")]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        [HttpGet("getall{id}")]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers(int id)
         {
-            return await _context.Users.ToListAsync();
+            var friends = _context.Friends.Include(f => f.UserFriend).Where(f => f.UserFriendID == id).Where(f => f.Status == 2);
+
+            var friendrequest = _context.Friends.Include(f => f.UserFriend).Where(f => f.UserFriendID == id).Where(f => f.Status == 1);
+
+            var friendrequestSent = _context.Friends.Include(f => f.UserFriend).Where(f => f.UserID == id).Where(f => f.Status == 1);
+
+            List<int> friendIDs = new List<int>();
+
+            friendIDs.Add(id);
+
+            foreach (var f in friends)
+            {
+                friendIDs.Add(f.UserID);
+            }
+
+            foreach (var r in friendrequest)
+            {
+                friendIDs.Add(r.UserID);
+            }
+
+            foreach (var r in friendrequestSent)
+            {
+                friendIDs.Add(r.UserFriendID);
+            }
+
+            var allUsers = _context.Users;
+
+            var NotFriends = new List<UserDto>();
+
+            foreach(var au in allUsers)
+            {
+                var userid = au.UserID;
+
+                if (!friendIDs.Contains(userid))
+                {
+                    NotFriends.Add(new UserDto { UserID = au.UserID, Firstname = au.FirstName, Lastname = au.LastName, Email = au.LastName, Username = au.Username });
+                }
+            }
+
+
+
+            return NotFriends;
         }
 
         // GET: api/UserBeheer/5
