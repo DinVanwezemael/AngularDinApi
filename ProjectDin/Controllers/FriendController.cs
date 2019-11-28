@@ -166,6 +166,20 @@ namespace ProjectDin.Controllers
             return null;
         }
 
+        // DELETE: api/Friend/5
+        [HttpDelete("decline{id}")]
+        public async Task<ActionResult<Friend>> DeleteFriendDecline(int id)
+        {
+
+            var friend = _context.Friends.Find(id);
+
+            _context.Friends.Remove(friend);
+
+            await _context.SaveChangesAsync();
+
+            return null;
+        }
+
         private bool FriendExists(int id)
         {
             return _context.Friends.Any(e => e.FriendID == id);
