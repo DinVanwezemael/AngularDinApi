@@ -22,5 +22,6 @@ namespace ProjectDin.Models
         public ICollection<Antwoord> Antwoorden { get; set; }
 
         public ICollection<Uitnodiging> Uitnodigingen { get; set; }
+
     }
 }

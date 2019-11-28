@@ -23,7 +23,7 @@ namespace ProjectDin.Controllers
 
         // GET: api/Friend
         [HttpGet]
-        public async Task<ActionResult<IList<FriendDto>>> GetFriends()
+        public async Task<ActionResult<IList<FriendDto>>> GetFriends(int id)
         {
             var friendsContext = _context.Friends.Include(f => f.UserFriend);
 
@@ -33,6 +33,7 @@ namespace ProjectDin.Controllers
             }
 
             var vFriends = await friendsContext.ToListAsync();
+
 
             var vFriendsDtos = new List<FriendDto>();
 
@@ -82,8 +83,11 @@ namespace ProjectDin.Controllers
             var vFriendsDtos = new List<FriendDto>();
 
             foreach (var f in vFriends)
+
             {
-                vFriendsDtos.Add(new FriendDto() { UserID = f.UserID, FriendID = f.FriendID, Status = f.Status, UserFriendID = f.UserFriendID, Username = f.UserFriend.Username });
+                var user = _context.Users.Find(f.UserID);
+
+                vFriendsDtos.Add(new FriendDto() { UserID = f.UserID, FriendID = f.FriendID, Status = f.Status, UserFriendID = f.UserFriendID, Username = user.Username });
             }
 
             return vFriendsDtos;

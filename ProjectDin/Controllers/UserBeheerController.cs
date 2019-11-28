@@ -49,6 +49,11 @@ namespace ProjectDin.Controllers
         public async Task<IActionResult> PutUser(int id,[FromBody] User user)
         {
 
+            var userOld = _context.Users.Find(id);
+
+            user.Password = userOld.Password;
+
+            _context.Entry(userOld).State = EntityState.Detached;
 
             _context.Entry(user).State = EntityState.Modified;
 
@@ -73,7 +78,7 @@ namespace ProjectDin.Controllers
         }
 
         // PUT: api/UserBeheer/5
-        [HttpPut("password{id}")]
+        [HttpPut("password/{id}")]
         public async Task<IActionResult> PutUserPassword(int id,[FromBody] User user)
         {
             if (id != user.UserID)
