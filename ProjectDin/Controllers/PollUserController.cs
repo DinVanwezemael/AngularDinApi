@@ -92,54 +92,13 @@ namespace ProjectDin.Controllers
                 });
             }
 
+            vPollDtos.Reverse();
+
             return vPollDtos;
+
         }
 
-        ////GET: api/PollUser/5
-        //[HttpGet("getpoll{id}")]
-        //public async Task<ActionResult<PollUser>> GetPollUserEnkel(int id)
-        //{
-        //    var pollContext = _context.PollUsers.Include(p => p.User).Include(p => p.Poll).Where(p => p.PollID == id).Include(p => p.Poll.Opties);
-        //    var pollContext = _context.PollUsers.Include(p => p.User).Include(p => p.Poll).Include(p => p.Poll.Opties).Find(id);
-
-
-        //    if (pollContext == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-
-
-        //    var vPollDtos = new PollDto();
-
-        //    var opties = new List<Optie>();
-
-
-        //    opties = new List<Optie>();
-        //    foreach (var o in pollContext)
-        //    {
-        //        var Stemmen = _context.Antwoorden.Include(a => a.Optie).Where(a => a.OptieID == o.OptieID);
-        //        int aantalStemmen = Stemmen.Count();
-
-        //        opties.Add(new Optie { Naam = o.Naam, OptieID = o.OptieID, PollID = o.PollID, AantalStemmen = aantalStemmen });
-
-
-        //    }
-
-        //    vPollDtos.Add(new PollDto()
-        //    {
-        //        PollID = pollContext.,
-        //        Naam = pollContext.Poll.Naam,
-        //        UserID = pollContext.UserID,
-        //        UserName = pollContext.User.Username,
-        //        PollUserID = pollContext.PollUserID,
-        //        Opties = opties
-
-        //    });
-
-
-        //    return pollContext;
-        //}
+        
 
         // GET: api/PollUser/5
         [HttpGet("uitgenodigd{id}")]
@@ -187,6 +146,8 @@ namespace ProjectDin.Controllers
 
                 });
             }
+
+            vPollDtos.Reverse();
 
             return vPollDtos;
         }

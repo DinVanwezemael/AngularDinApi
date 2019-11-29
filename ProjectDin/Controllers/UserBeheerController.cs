@@ -90,33 +90,51 @@ namespace ProjectDin.Controllers
         public async Task<IActionResult> PutUser(int id,[FromBody] User user)
         {
 
-            var userOld = _context.Users.Find(id);
+            var userBestaat = _context.Users.Where(u => u.Username == user.Username);
 
-            user.Password = userOld.Password;
+            int userID = 0;
 
-            _context.Entry(userOld).State = EntityState.Detached;
-
-            _context.Entry(user).State = EntityState.Modified;
-
-
-            try
+            foreach(var u in userBestaat)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                userID = u.UserID;
             }
 
-            return Ok(user);
-        }
+            if (userBestaat.Count() < 1 || userID == id)
+            {
+                var userOld = _context.Users.Find(id);
+
+                user.Password = userOld.Password;
+
+                _context.Entry(userOld).State = EntityState.Detached;
+
+                _context.Entry(user).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return Ok(user);
+
+            }
+            else
+            {
+                return NotFound();
+            }
+                
+
+    }
 
         // PUT: api/UserBeheer/5
         [HttpPut("password/{id}")]
@@ -153,10 +171,22 @@ namespace ProjectDin.Controllers
         [HttpPost("insert")]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            var userOld = _context.Users.Where(u => u.Username == user.Username);
 
-            return CreatedAtAction("GetUser", new { id = user.UserID }, user);
+            if(userOld.Count() < 1)
+            {
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetUser", new { id = user.UserID }, user);
+
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            
         }
 
         // DELETE: api/UserBeheer/5

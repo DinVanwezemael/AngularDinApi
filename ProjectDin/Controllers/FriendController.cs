@@ -65,6 +65,8 @@ namespace ProjectDin.Controllers
                 vFriendsDtos.Add(new FriendDto() { UserID = f.UserID, FriendID = f.FriendID, Status = f.Status, UserFriendID = f.UserFriendID, Username = f.UserFriend.Username, Reference = f.Reference });
             }
 
+            //vFriendsDtos.Sort();
+
             return vFriendsDtos;
         }
 
@@ -89,6 +91,8 @@ namespace ProjectDin.Controllers
 
                 vFriendsDtos.Add(new FriendDto() { UserID = f.UserID, FriendID = f.FriendID, Status = f.Status, UserFriendID = f.UserFriendID, Username = user.Username });
             }
+
+            vFriendsDtos.Reverse();
 
             return vFriendsDtos;
         }
