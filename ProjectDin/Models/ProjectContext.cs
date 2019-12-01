@@ -11,7 +11,6 @@ namespace ProjectDin.Models
     {
         public ProjectContext(DbContextOptions<ProjectContext> options) : base(options) { }
         
-        public DbSet<Gebruiker> Gebruikers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Friend> Friends { get; set; }
         public DbSet<Poll> Polls { get; set; }
@@ -22,7 +21,6 @@ namespace ProjectDin.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Gebruiker>().ToTable("Gebruiker");
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Friend>().ToTable("Friend");
             modelBuilder.Entity<Poll>().ToTable("Poll");

@@ -16,17 +16,17 @@ namespace ProjectDin.Models
                      
                 }
 
-            context.Users.AddRange(new User { Username = "test", Password = "test", FirstName = "Test", LastName = "Test", Email = "test.test@thomasmore.be"});
+            context.Users.AddRange(new User { Username = "johndoe", Password = "root123", FirstName = "John", LastName = "Doe", Email = "johndoe@thomasmore.be"});
 
-            context.Users.AddRange(new User { Username = "din", Password = "root", FirstName = "Din", LastName = "Vanwezemael", Email = "dinvanwezemael@thomasmore.be" });
+            context.Users.AddRange(new User { Username = "din", Password = "root123", FirstName = "Din", LastName = "Vanwezemael", Email = "r0708466@student.thomasmore.be" });
 
-            context.Poll.AddRange(new Poll { Naam = "test" });
+            context.Poll.AddRange(new Poll { Naam = "Test van de poll" });
 
             context.SaveChanges();
 
-            context.Opties.AddRange(new Optie { PollID = context.Polls.First().PollID, Naam = "optie1" });
+            context.Opties.AddRange(new Optie { PollID = context.Polls.First().PollID, Naam = "Werkt" });
 
-            context.Opties.AddRange(new Optie { PollID = context.Polls.First().PollID,  Naam = "optie2" });
+            context.Opties.AddRange(new Optie { PollID = context.Polls.First().PollID,  Naam = "Werkt niet" });
 
             context.SaveChanges();
 
@@ -36,7 +36,6 @@ namespace ProjectDin.Models
 
             context.Friends.AddRange(new Friend { UserID = 2, UserFriendID = context.Users.First().UserID, Status = 1 });
 
-            //context.PollOpties.AddRange(new PollOptie { OptieID = context.Opties.First().OptieID, PollID = context.Polls.First().PollID });
 
             context.PollUsers.Add(new PollUser() { UserID = context.Users.First().UserID, PollID = context.Polls.First().PollID });
             
