@@ -25,12 +25,15 @@ namespace ProjectDin.Controllers
         [HttpGet("getall{id}")]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers(int id)
         {
+            //bevriende user ophalen + user ophalen waar een verzoek naar is verstuurd of die een verzoek hebben gestuurd
             var friends = _context.Friends.Include(f => f.UserFriend).Where(f => f.UserFriendID == id).Where(f => f.Status == 2);
 
             var friendrequest = _context.Friends.Include(f => f.UserFriend).Where(f => f.UserFriendID == id).Where(f => f.Status == 1);
 
             var friendrequestSent = _context.Friends.Include(f => f.UserFriend).Where(f => f.UserID == id).Where(f => f.Status == 1);
 
+
+            //id's van user toevoegen aan list
             List<int> friendIDs = new List<int>();
 
             friendIDs.Add(id);
@@ -52,6 +55,8 @@ namespace ProjectDin.Controllers
 
             var allUsers = _context.Users;
 
+
+            //alleen users die niet is de list zitten toevoegen aan NotFriends
             var NotFriends = new List<UserDto>();
 
             foreach(var au in allUsers)

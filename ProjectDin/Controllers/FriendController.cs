@@ -49,6 +49,7 @@ namespace ProjectDin.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<IList<FriendDto>>> GetFriend(int id)
         {
+            //vrienden hebben de status 2
             var friendsContext = _context.Friends.Include(f => f.UserFriend).Where(f => f.UserID == id).Where(f => f.Status == 2);
 
             if (friendsContext == null)
@@ -65,7 +66,6 @@ namespace ProjectDin.Controllers
                 vFriendsDtos.Add(new FriendDto() { UserID = f.UserID, FriendID = f.FriendID, Status = f.Status, UserFriendID = f.UserFriendID, Username = f.UserFriend.Username, Reference = f.Reference });
             }
 
-            //vFriendsDtos.Sort();
 
             return vFriendsDtos;
         }
@@ -73,6 +73,7 @@ namespace ProjectDin.Controllers
         [HttpGet("getverzoeken{id}")]
         public async Task<ActionResult<IList<FriendDto>>> GetVerzoeken(int id)
         {
+            //een vriendschapsverzoek heeft de status 1
             var friendsContext = _context.Friends.Include(f => f.UserFriend).Where(f => f.UserFriendID == id).Where(f => f.Status == 1);
 
             if (friendsContext == null)
@@ -109,6 +110,7 @@ namespace ProjectDin.Controllers
 
             _context.Entry(friend).State = EntityState.Modified;
 
+            //status op 2 zetten
             var newFriend = new Friend() { Status = 2, UserID = friend.UserFriendID, UserFriendID = friend.UserID, Reference = friend.FriendID };
 
             _context.Friends.Add(newFriend);
